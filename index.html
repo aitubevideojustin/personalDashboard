@@ -3,28 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Dashboard</title>
+    <title>What's My IP?</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="app">
-        <!-- Weather Section -->
-        <section id="weather">
-            <h2>Weather</h2>
-            <div id="weather-info"></div>
-        </section>
-        <!-- News Section -->
-        <section id="news">
-            <h2>News</h2>
-            <div id="news-articles"></div>
-        </section>
-        <!-- To-Do List Section -->
-        <section id="todo">
-            <h2>To-Do List</h2>
-            <input type="text" id="new-task" placeholder="Add a new task">
-            <button id="add-task">Add</button>
-            <ul id="task-list"></ul>
-        </section>
+    <div class="container">
+        <h1>What's My IP?</h1>
+        <div id="loading">Fetching your IP details...</div>
+        <div id="ip-info" style="display: none;">
+            <p><strong>IP Address:</strong> <span id="ip"></span></p>
+            <p><strong>City:</strong> <span id="city"></span></p>
+            <p><strong>Region:</strong> <span id="region"></span></p>
+            <p><strong>Country:</strong> <span id="country"></span></p>
+            <p><strong>ISP:</strong> <span id="isp"></span></p>
+            <p><strong>Timezone:</strong> <span id="timezone"></span></p>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
