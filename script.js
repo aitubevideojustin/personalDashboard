@@ -1,24 +1,27 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Weather Section
-    const weatherInfo = document.getElementById('weather-info');
-    // Fetch and display weather data here
+document.addEventListener("DOMContentLoaded", () => {
+    const loadingDiv = document.getElementById("loading");
+    const ipInfoDiv = document.getElementById("ip-info");
 
-    // News Section
-    const newsArticles = document.getElementById('news-articles');
-    // Fetch and display news articles here
+    fetch("http://ip-api.com/json/")
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "fail") {
+                loadingDiv.innerHTML = "Error fetching IP details.";
+                return;
+            }
 
-    // To-Do List Section
-    const newTaskInput = document.getElementById('new-task');
-    const addTaskButton = document.getElementById('add-task');
-    const taskList = document.getElementById('task-list');
+            document.getElementById("ip").textContent = data.query;
+            document.getElementById("city").textContent = data.city;
+            document.getElementById("region").textContent = data.regionName;
+            document.getElementById("country").textContent = data.country;
+            document.getElementById("isp").textContent = data.isp;
+            document.getElementById("timezone").textContent = data.timezone;
 
-    addTaskButton.addEventListener('click', () => {
-        const taskText = newTaskInput.value.trim();
-        if (taskText !== '') {
-            const listItem = document.createElement('li');
-            listItem.textContent = taskText;
-            taskList.appendChild(listItem);
-            newTaskInput.value = '';
-        }
-    });
+            loadingDiv.style.display = "none";
+            ipInfoDiv.style.display = "block";
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            loadingDiv.innerHTML = "Failed to load IP data.";
+        });
 });
